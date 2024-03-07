@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionAuthProvider from "@/context/SessionAuthProvider"
-
+import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="container mx-auto px-4" >
-          <SessionAuthProvider>{children}</SessionAuthProvider>
+        <main className="container bg-gradient-to-b from-green-800 from-15%% to-slate-200 mx-auto px-4 h-screen w-screen" >
+          <SessionAuthProvider>
+          <Navbar/>
+            {children}
+          </SessionAuthProvider>
         </main>
       </body>
     </html>
