@@ -37,7 +37,10 @@ const DocumentTable: React.FC<DocumentTableProps> = ({ documents, selectedBooks,
 
   const initialDisplay = 13;
   const displayCount = showMore ? documents.length : initialDisplay;
+  console.log('aqui estan los documents pasados al componente');
+  
   console.log(documents);
+  
   
   const handleCheckboxChange = (documentId: number) => {
     // Comprueba si el documento ya está en la lista de libros seleccionados

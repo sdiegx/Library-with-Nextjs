@@ -57,9 +57,13 @@ const Dashboard = () => {
           },
         });
         const data = await res.json();
-        setDocuments(data)
+        console.log('Aqui esta la data traida con fetch');
+        // setDocuments(data)
+        console.log(session?.user?.token);
+        console.log(data);
+        
       } catch (error) {
-        console.error('no me preguntes se daño :c'+ error)
+        console.error(error);
       }
     }
     getBooks();
@@ -71,9 +75,16 @@ const Dashboard = () => {
   
   const handlerCreateLoan = async () =>{
     setCount(count + 1)
+    console.log(session);
+    console.log("aqui estan los documentos en el dashboard");
+    console.log(documents);
+    
+    
+    
     const completDocumentsSelected = documents.filter(document => selectedBooks.includes(document.id))
     
     if (count % 2 === 0){
+      if(!completDocumentsSelected) return
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/loans`, {
           method: "POST",
@@ -92,8 +103,7 @@ const Dashboard = () => {
         console.log(data);
         setIsSelected(false);
       } catch (error) {
-        console.log(error);
-        
+        console.log(error);        
       }
       return
     }
