@@ -5,8 +5,6 @@ import Link from "next/link";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  console.log(session);
-  
   return (
   	<nav className="navbar navbar-dark bg-dark">
       {session && <div className="container">
@@ -23,6 +21,12 @@ const Navbar = () => {
               className="btn btn-primary btn-sm"
             >
               Dashboard
+            </Link>
+            <Link
+              href="/loans"
+              className=""
+            >
+              Mis préstamos
             </Link>
             <button
               onClick={() => signOut()}

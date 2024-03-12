@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import jwt from "jsonwebtoken";
 
 const handler = NextAuth({
   providers: [
@@ -41,7 +40,6 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       session.user = token as any;
-      // session.user.role = token.role as any;
       return session;
     },
   },

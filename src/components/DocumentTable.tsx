@@ -7,40 +7,8 @@ interface DocumentTableProps {
   setSelectedBooks: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-interface Document {
-  id: number;
-  title: string;
-  publisher: string;
-  publicationDate: string;
-  genre: string;
-  summary: string;
-  language: string;
-  pageCount: number;
-  physicalLocation: string;
-  available: boolean;
-  numberOfCopies: number;
-  deletedAt: string | null;
-  authors: Author[];
-}
-
-interface Author {
-  id: number;
-  firstName: string;
-  lastName: string;
-  college: string;
-  deletedAt: string | null;
-}
-
-
 const DocumentTable: React.FC<DocumentTableProps> = ({ documents, selectedBooks, setSelectedBooks }) => {
-  const [showMore, setShowMore] = useState(false);
-
-  const initialDisplay = 13;
-  const displayCount = showMore ? documents.length : initialDisplay;
-  console.log('aqui estan los documents pasados al componente');
-  
-  console.log(documents);
-  
+  const [count, setCount] = useState(0);
   
   const handleCheckboxChange = (documentId: number) => {
     // Comprueba si el documento ya está en la lista de libros seleccionados
@@ -54,6 +22,26 @@ const DocumentTable: React.FC<DocumentTableProps> = ({ documents, selectedBooks,
       setSelectedBooks([...selectedBooks, documentId]);
     }
   };
+
+  const handlerIndexPlusDocuments = () => {
+		const lengthLoans = documents.length;
+		if((count + 4) >= lengthLoans){
+			setCount(lengthLoans-4)
+		}else if((count + 4) < lengthLoans){
+			console.log(count);
+			
+			setCount(count + 4);
+			console.log(count);
+		}
+	}
+
+	const handlerIndexMinusDocuments = () => {
+		if(count - 4 < 0){
+			setCount(0)
+		}else{
+			setCount(count - 4);
+		}
+	}
 
   return (
     <div className="container mx-auto max-w-lg p-4 bg-white rounded-t-lg shadow-lg">
@@ -70,7 +58,7 @@ const DocumentTable: React.FC<DocumentTableProps> = ({ documents, selectedBooks,
             </tr>
           </thead>
           <tbody>
-            {documents.slice(0, displayCount).map((document, index) => (
+            {documents.length !==0  && documents.slice(count, 4+count).map((document, index) => (
               <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
                 <td className="px-4 py-2">
                   {/* Casilla de verificación para seleccionar el libro */}
@@ -94,13 +82,17 @@ const DocumentTable: React.FC<DocumentTableProps> = ({ documents, selectedBooks,
           </tbody>
         </table>
       </div>
-      {documents.length > initialDisplay && (
-        <div className="text-center mt-4">
-          <button onClick={() => setShowMore(!showMore)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {showMore ? 'Mostrar menos' : 'Mostrar más'}
-          </button>
-        </div>
-      )}
+      {documents.length > 4 && (
+      <>
+				<button className="block text-center text-blue-500 font-semibold hover:underline" onClick={handlerIndexPlusDocuments}>
+	        +
+  	    </button>
+				<span>{`De ${count+1} a ${count+4}`}</span>
+				<button className="block text-center text-blue-500 font-semibold hover:underline" onClick={handlerIndexMinusDocuments}>
+					-
+				</button>
+			</>
+    )}
     </div>
   );
 };
