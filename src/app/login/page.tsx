@@ -39,11 +39,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-screen absolute bottom-48 left-0 right-0">
+      <div className="flex flex-col justify-center items-center h-screen relative bottom-72 left-0 right-0">
         <Image src={LogoEagle} alt="Logo espe" className="object-cover w-56 sm:w-64" />
       </div>
 
-      <div className="container flex flex-col justify-center items-center mx-auto max-w-lg p-4 bg-green-800 absolute bottom-0 left-0 right-0 rounded-tl-3xl">
+      <div className="container flex flex-col justify-center items-center mx-auto max-w-lg p-4 bg-green-800 absolute bottom-20 left-0 right-0 rounded-tl-3xl">
       
   <div className="flex flex-col items-center justify-center space-y-4 w-screen">
     <form onSubmit={handleSubmit}>
@@ -94,8 +94,6 @@ const LoginPage = () => {
     </div>
   )}
 </div>
-
-
     </>
   );
 };

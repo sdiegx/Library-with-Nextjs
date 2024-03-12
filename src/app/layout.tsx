@@ -15,6 +15,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
   <body className="container bg-gradient-to-b from-green-800 from-15%% to-slate-200 mx-auto h-screen w-screen">

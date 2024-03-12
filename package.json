@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "helmet": "^7.1.0",
     "jwt-decode": "^4.0.0",
     "next": "14.1.2",
     "next-auth": "^4.24.6",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@types/helmet": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
