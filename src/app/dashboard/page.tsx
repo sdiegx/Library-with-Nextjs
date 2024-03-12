@@ -179,15 +179,35 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <button onClick={handlerCreateLoan}><strong>+</strong></button>
-      {isAdmin && <button onClick={() => setShowModalAuthors(true)} >Agregar Autor</button>}
-      {isAdmin && <button onClick={() => setShowModalBooks(true)} >Agregar Documentos</button>}
-      {isSelected && <DatePicker start_date={start_date} end_date={end_date} setStartDate={setStartDate} setEndDate={setEndDate}/>}
-      <DocumentTable documents={documents} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
-      {showModalAuthors && <AuthorsModal handlerCreateAuthor={handlerCreateAuthor}/>}
-      {showModalBooks && <DocumentsModal handlerCreateDocument={handlerCreateDocument} authors={authors}/>}
+    <div className="flex flex-col justify-center items-center h-screen w-screen">
+  <div className="flex flex-col md:flex-row justify-end w-full">
+    <div >
+      <button onClick={handlerCreateLoan} className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded  md:mb-4">
+        <strong>+</strong>
+      </button>
     </div>
+    <div className="flex flex-col md:flex-row"> {/* Contenedor para el segundo div */}
+      {isAdmin && (
+        <>
+          <button onClick={() => setShowModalAuthors(true)} className="bg-cyan-800 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded md:mb-4">
+            Agregar Autor
+          </button>
+          <button onClick={() => setShowModalBooks(true)} className="bg-teal-800 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mb-4 md:mr-16">
+            Agregar Documentos
+          </button>
+        </>
+      )}
+    </div>
+  </div>
+  {isSelected && <DatePicker start_date={start_date} end_date={end_date} setStartDate={setStartDate} setEndDate={setEndDate} />}
+  <div className="mt-1 py-1 w-screen"> {/* Ajuste de espacio superior y padding */}
+    <DocumentTable documents={documents} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
+  </div>
+  {showModalAuthors && <AuthorsModal handlerCreateAuthor={handlerCreateAuthor} />}
+  {showModalBooks && <DocumentsModal handlerCreateDocument={handlerCreateDocument} authors={authors} />}
+</div>
+
+
   );
 };
 export default Dashboard;

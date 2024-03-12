@@ -17,14 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="container bg-gradient-to-b from-green-800 from-15%% to-slate-200 mx-auto px-4 h-screen w-screen" >
-          <SessionAuthProvider>
-          <Navbar/>
-            {children}
-          </SessionAuthProvider>
-        </main>
-      </body>
-    </html>
+  <body className="container bg-gradient-to-b from-green-800 from-15%% to-slate-200 mx-auto h-screen w-screen">
+    <SessionAuthProvider>
+      <Navbar />
+      <main className="relative">
+        <div className="mt-20">
+          {children}
+        </div>
+      </main>
+    </SessionAuthProvider>
+  </body>
+</html>
+
   );
 }
