@@ -86,7 +86,7 @@ const Dashboard = () => {
       const data = await res.json();
       console.log(data);
       
-      // setShowModalBooks(false);
+      setShowModalBooks(false);
     } catch (error) {
       console.log(error);
     }
@@ -142,7 +142,7 @@ const Dashboard = () => {
       console.log('No hay sesion activa');
     
     }
-  }, [session]);
+  }, [session, showModalAuthors, showModalBooks]);
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -203,8 +203,8 @@ const Dashboard = () => {
   <div className="mt-1 py-1 w-screen"> {/* Ajuste de espacio superior y padding */}
     <DocumentTable documents={documents} selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />
   </div>
-  {showModalAuthors && <AuthorsModal handlerCreateAuthor={handlerCreateAuthor} />}
-  {showModalBooks && <DocumentsModal handlerCreateDocument={handlerCreateDocument} authors={authors} />}
+  {showModalAuthors && <AuthorsModal handlerCreateAuthor={handlerCreateAuthor} setShowModalAuthors={setShowModalAuthors} />}
+  {showModalBooks && <DocumentsModal handlerCreateDocument={handlerCreateDocument} authors={authors} setShowModalBooks={setShowModalBooks} />}
 </div>
 
 

@@ -60,39 +60,48 @@ const Loans = () => {
 		}
 	}
 
-  return (<>
-		<div className="flex justify-center items-center h-screen">
-  <div className="max-w-md p-8 bg-gray-100 shadow-md rounded-md overflow-y-auto">
-    <h2 className="text-lg font-semibold mb-4">Lista de Objetos</h2>
-    {loans.slice(count, 3+count).map(loan => (
-      <div key={loan.id} className="mb-4">
-        <ul>
-          <li><span className="font-semibold">Inicio:</span> {loan.start_date}</li>
-          <li><span className="font-semibold">Fin:</span> {loan.end_date}</li>
-          <li><span className="font-semibold">Libros: </span> 
-            <ul>
-              {loan.books.map(book => (
-                <li key={book.id}>{book.title}</li>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      </div>
-    ))}
-    {loans.length > 4 && (
-      <>
-				<button className="block text-center text-blue-500 font-semibold hover:underline" onClick={handlerIndexPlusLoans}>
-	        +
-  	    </button>
-				<span>{`De ${count+1} a ${count+3}`}</span>
-				<button className="block text-center text-blue-500 font-semibold hover:underline" onClick={handlerIndexMinusLoans}>
-					-
-				</button>
-			</>
-    )}
+  function formatDate(dateString: string) {
+    return new Date(dateString).toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+  return (
+    <>
+  <div className="flex justify-center items-center h-screen w-screen">
+    <div className=" w-11/12 md:w-6/12 p-8 bg-gray-100 shadow-md rounded-md overflow-y-auto">
+      <h2 className="text-lg font-semibold mb-4">Lista de Préstamos</h2>
+      {loans.slice(count, 3 + count).map(loan => (
+        <div key={loan.id} className="mb-4 bg-green-800 bg-opacity-25 p-4 rounded-md">
+          <ul>
+            <li><span className="font-semibold">Inicio:</span> {formatDate(loan.start_date)}</li>
+            <li><span className="font-semibold">Fin:</span> {formatDate(loan.end_date)}</li>
+            <li><span className="font-semibold">Libros: </span>
+              <ul>
+                {loan.books.map(book => (
+                  <li key={book.id}><span className="font-semibold ml-6">{book.id}.</span> {book.title}</li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        </div>
+      ))}
+      {loans.length > 4 && (
+        <div className="relative bottom-0 left-0 flex items-center mb-4 ml-4 w-full">
+          <button className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-4 rounded-md ml-2" onClick={handlerIndexMinusLoans}>
+            -
+          </button>
+          <span>{`De ${count + 1} a ${count + 3}`}</span>
+          <button className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-4 rounded-md mr-2" onClick={handlerIndexPlusLoans}>
+            +
+          </button>
+        </div>
+      )}
+    </div>
   </div>
-</div>
+</>
 
-	</>)
+  )
 }
 export default Loans

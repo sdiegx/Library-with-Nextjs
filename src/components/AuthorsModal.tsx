@@ -3,9 +3,10 @@ import { useState } from 'react';
 
 interface AuthorsModalProps {
   handlerCreateAuthor: (formAuthorsData: Author, event: React.FormEvent<HTMLFormElement>) => {};
+  setShowModalAuthors: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AuthorsModal: React.FC<AuthorsModalProps> = ({ handlerCreateAuthor }) => {
+const AuthorsModal: React.FC<AuthorsModalProps> = ({ handlerCreateAuthor, setShowModalAuthors }) => {
   
   const [formAuthorsData, setFormAuthorsData] = useState({
     "firstName": '',
@@ -24,7 +25,7 @@ const AuthorsModal: React.FC<AuthorsModalProps> = ({ handlerCreateAuthor }) => {
         <div className="modal-content">
           <div className="modal-header bg-gray-200 p-4">
             <h5 className="modal-title text-xl font-semibold" id="modal-label">Agregar Autor</h5>
-            <button type="button" className="close text-gray-600 hover:text-gray-800" data-dismiss="modal" aria-label="Close">
+            <button type="button" onClick={()=>setShowModalAuthors(false)} className="close text-gray-600 hover:text-gray-800" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

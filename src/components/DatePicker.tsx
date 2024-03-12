@@ -25,30 +25,30 @@ const DatePicker: React.FC<DatePickerProps> = ({ start_date, setStartDate, end_d
   };
 
   return (
-    <div>
-      <div className="inline-flex">
-        <label htmlFor="start-date" className="mr-2">Fecha de inicio:</label>
-        <input
-          type="date"
-          id="start-date"
-          value={start_date}
-          onChange={handleStartDateChange}
-          className="border border-gray-300 rounded px-2 py-1"
-          min={new Date().toISOString().split('T')[0]}
-        />
-      </div>
-      <div className="inline-flex ml-4">
-        <label htmlFor="end-date" className="mr-2">Fecha de fin:</label>
-        <input
-          type="date"
-          id="end-date"
-          value={end_date}
-          onChange={handleEndDateChange}
-          className="border border-gray-300 rounded px-2 py-1"
-          min={start_date}
-        />
-      </div>
-    </div>
+    <div className="flex w-full justify-center items-center">
+  <div className="inline-flex ml-4 w-1/3 items-center">
+    <label htmlFor="start-date" className="mr-2 font-bold">Fecha de inicio:</label>
+    <input
+      type="date"
+      id="start-date"
+      value={start_date}
+      onChange={handleStartDateChange}
+      className="border border-gray-300 rounded px-2 py-1"
+      min={new Date().toISOString().split('T')[0]}
+    />
+  </div>
+  <div className="inline-flex ml-4 w-1/3 items-center">
+    <label htmlFor="end-date" className="mr-2 font-bold">Fecha de fin:</label>
+    <input
+      type="date"
+      id="end-date"
+      value={end_date}
+      onChange={handleEndDateChange}
+      className="border border-gray-300 rounded px-2 py-1"
+      min={start_date}
+    />
+  </div>
+</div>
   );
 };
 
