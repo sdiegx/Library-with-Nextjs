@@ -6,52 +6,36 @@ import Link from "next/link";
 const Navbar = () => {
   const { data: session } = useSession();
   return (
-  	<nav className="navbar navbar-dark bg-dark">
-      {session && <div className="container">
-        <Link
-          href="/"
-          className="btn btn-primary btn-sm"
-        >
-          Home
-        </Link>
+  	<nav className="bg-gray-800">
+      <div className="container mx-auto flex flex-row justify-between items-center py-4">
+        <div className="flex items-center">
+          <Link href="/" className="text-white mr-4 transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Home</div>
+          </Link>
+        </div>
         {session?.user ? (
-          <>
-            <Link
-              href="/dashboard"
-              className="btn btn-primary btn-sm"
-            >
-              Dashboard
-            </Link>
-            <Link
-              href="/loans"
-              className=""
-            >
-              Mis préstamos
-            </Link>
-            <button
-              onClick={() => signOut()}
-              className="btn btn-danger btn-sm"
-            >
-              Signout
-            </button>
-          </>
+        <div className="flex items-center">
+          <Link href="/dashboard" className="text-white mr-4 transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Dashboard</div>
+          </Link>
+          <Link href="/loans" className="text-white mr-4 transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Mis préstamos</div>
+          </Link>
+          <button onClick={() => signOut()} className="text-white transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Signout</div>
+          </button>
+        </div>
         ) : (
-          <>
-            <Link
-              href="/login"
-              className="btn btn-primary btn-sm"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="btn btn-primary btn-sm"
-            >
-              Register
-            </Link>
-          </>
+        <div className="flex items-center">
+          <Link href="/login" className="text-white mr-4 transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Login</div>
+          </Link>
+          <Link href="/register" className="text-white transition duration-300 ease-in-out transform hover:scale-110 hover:text-gray-300">
+            <div className="hover:bg-gray-600 py-8 px-2 rounded">Register</div>
+          </Link>
+        </div>
         )}
-      </div>}
+      </div>
     </nav>
   );
 };
